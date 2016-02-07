@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link type ="text/css" rel="stylesheet" href ="css/materialize.css" media="screen,projection"/>
+    <meta content="initial-scale=1.0, user-scalable=no" name="viewport">
+    <meta charset="utf-8">
+
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/skeleton.css">
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+    <div class="wrapper">
+        <h1><font face="Condensed Light">Path to Success</font></h1>
+        <div class="col s12 m8 offset-m2 l6 offset-l3">
+        <div class="card-panel grey lighten-5 z-depth-1">
+          <div class="row valign-wrapper">
+            <div class="col s2">
+              <img src="tech.png" alt="" class="circle responsive-img"> <!-- notice the "circle" class -->
+            </div>
+            <div class="col s10">
+            </div>
+          </div>
+        </div>
+      </div>
+        <h3>Please enter your trip itinerary!</h3>
+        <form>
+            <div class="row places">
+                <label for="place1">Place 1</label>
+                <input id="place1" placeholder="Place 1" type="text">
+            </div>
+            <button class="another-one">Anotha one</button>
+            <button class="button-primary submit">Submit</button>
+        </form>
+
+    </div>
+    <div id="map"></div>
+    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyCXVCTiguFy7zJdinhQEU6vWTFktJCPNU4&sensor=true"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCXVCTiguFy7zJdinhQEU6vWTFktJCPNU4"></script>
+    <script src="http://code.jquery.com/jquery-2.2.0.min.js"></script>
+    <script type="text/javascript" src="js/materialize.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
