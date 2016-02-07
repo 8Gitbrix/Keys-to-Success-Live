@@ -7,6 +7,9 @@ $(function() {
     var userCenter = [];
     var markers = [];
     var weights = [];
+    var durations = [];
+    var arr = [];
+    graph = new Graph();
 
     $('.another-one').on('click', function(e) {
         e.preventDefault();
@@ -19,7 +22,7 @@ $(function() {
 
         var inputs = places.find('input');
 
-        var arr = [];
+        arr = [];
 
         for (var i = 0; i < inputs.length; i++) {
             arr.push($(inputs.get(i)).val());
@@ -96,33 +99,49 @@ $(function() {
                 for (var i = 0; i < origins.length; i++) {
                     var results = response.rows[i].elements;
                     for (var j = 0; j < results.length; j++) {
+
                         var element = results[j];
-                        var distance = element.distance.text;
                         var duration = element.duration.text;
+                        var distance = element.distance.text;
+
+                        var duration1 = parseInt(duration.substring(0) , 10 ) + 1;
+                        google.maps.event.addListenerOnce(map, 'tilesloaded', function() {
+                            durations.push(duration1);
+                        });
                         var from = origins[i];
                         var to = destinations[j];
-                        //console.log('It takes ' + duration + ' long to get from ' + from + ' to ' + to + '!');
-                        //my stuff
-                        alert("load new content");
-                        //document.open();
-                        //document.write('It takes ' + duration + ' long to get from ' + from + ' to ' + to + '!');
-                        //document.close();
+                        alert('It takes ' + duration + ' long to get from ' + from + ' to ' + to + '!');
                     }
                 }
             }
         });
     }
 
+    //also builds graph
     function getWeights(markers)
     {
-        getWeightBw(markers[0], markers[1]);
+
+        for(var i = 0; i < arr.length; i++)
+        {
+            graph.addNode(arr[i]);
+        }
+
+        var ctr = 0;
+        for(var i = 0; i < markers.length; i++)
+        {
+            for(var j = i + 1; j < markers.length; j++)
+            {
+                getWeightBw(markers[i], markers[j]);
+                weight = durations[ctr];
+
+                graph.nodes[i].addEdge(graph.nodes[j],weight); 
+                alert(weight);
+                ctr += 1;
+            }
+        }
     }
 
-    function findMST(graph)
-    {
-
-    }
-
+    
 
     function initialize(arr) {
 
@@ -149,5 +168,7 @@ $(function() {
         google.maps.event.addListenerOnce(map, 'tilesloaded', function() {
             getWeights(markers);
         });
+
+
     }
 });
